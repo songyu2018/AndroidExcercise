@@ -3,7 +3,6 @@ package com.yusong.photosearch.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,8 +12,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.yusong.photosearch.R;
 import com.yusong.photosearch.DetailsActivity;
+import com.yusong.photosearch.R;
 import com.yusong.photosearch.Models.Photo;
 
 import java.util.List;
@@ -22,7 +21,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.yusong.photosearch.utilities.Constants.NOTE_ID_KEY;
+import static com.yusong.photosearch.utilities.Constants.PHOTO_BIG_IMAGE_URL;
+import static com.yusong.photosearch.utilities.Constants.PHOTO_DETAIL_URL;
 
 public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder> {
 
@@ -54,11 +54,23 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder> 
         holder.mThumbmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, DetailsActivity.class);
-                intent.putExtra(NOTE_ID_KEY, photo.getId());
-                mContext.startActivity(intent);
+                loadDetailView(photo);
             }
         });
+
+        holder.mTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadDetailView(photo);
+            }
+        });
+    }
+
+    private void loadDetailView(Photo photo) {
+        Intent intent = new Intent(mContext, DetailsActivity.class);
+        intent.putExtra(PHOTO_DETAIL_URL, photo.getDetailInfoUrl());
+        intent.putExtra(PHOTO_BIG_IMAGE_URL, photo.getPhotoUrl("b"));
+        mContext.startActivity(intent);
     }
 
     @Override

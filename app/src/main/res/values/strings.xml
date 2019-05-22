@@ -3,4 +3,10 @@
     <string name="title_activity_detail">DetailActivity</string>
     <string name="delete_all">Delete all photos</string>
     <string name="delete">Delete</string>
+    <string name="title_activity_details">DetailsActivity</string>
+    <string name="place_holder_text">Place Holder Text</string>
+    <string name="location">Location</string>
+    <string name="photographer">Photographer</string>
+    <string name="date">Date</string>
+    <string name="todo">TODO</string>
 </resources>

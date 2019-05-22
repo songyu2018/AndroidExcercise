@@ -15,6 +15,8 @@ import android.support.annotation.NonNull;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import static com.yusong.photosearch.utilities.Constants.API_KEY;
+
 @Entity(tableName = "photos")
 public class Photo  {
 
@@ -85,6 +87,14 @@ public class Photo  {
         String imageUrl = String.format("https://farm%d.staticflickr.com/%s/%s_%s_%s.jpg", this.farm, this.server, this.id, this.secret, size);
         return imageUrl;
     }
+
+    public String getDetailInfoUrl() {
+        String detailInfoUrl = String.format("https://api.flickr.com/services/rest/?method=flickr.photos.getinfo&api_key=%s&photo_id=%s&format=json&nojsoncallback=1",
+                API_KEY, this.id);
+        return detailInfoUrl;
+
+    }
+
     public String getId() {
         return id;
     }

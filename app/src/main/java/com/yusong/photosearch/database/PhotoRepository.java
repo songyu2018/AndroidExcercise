@@ -19,6 +19,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.yusong.photosearch.utilities.Constants.API_KEY;
+import static com.yusong.photosearch.utilities.Constants.FLICKR_SEARCH_METHOD;
+
 public class PhotoRepository {
     private static PhotoRepository ourInstance;
 
@@ -89,18 +92,6 @@ public class PhotoRepository {
 
     public void search(String keyWords) {
 
-
-        //let apiKey = "1af249b0331dff153977c0cd33dc1844"
-
-
-//URLString = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=\(apiKey)&text=\(escapedTerm)&per_page=100&
-// format=json&nojsoncallback=1"
-//URLString = "https://api.flickr.com/services/rest/?method=flickr.photos.getinfo&api_key=\(apiKey)&photo_id=\(phontoID)&format=json&nojsoncallback=1"
-//url =  URL(string: "https://farm\(farm).staticflickr.com/\(server)/\(photoID)_\(secret)_\(size).jpg")
-
-
-
-
         //Creating an object of our api interface
         ApiService api = RetroClient.getApiService();
 
@@ -108,8 +99,8 @@ public class PhotoRepository {
          * Calling JSON
          */
         Map<String, String> params = new HashMap<>();
-        params.put("method", "flickr.photos.search");
-        params.put("api_key", "1af249b0331dff153977c0cd33dc1844");
+        params.put("method", FLICKR_SEARCH_METHOD);
+        params.put("api_key", API_KEY);
         params.put("text", keyWords);
         params.put("per_page", "100");
         params.put("format", "json");
