@@ -36,19 +36,12 @@ public class DatabaseTest {
     }
 
     @Test
-    public void createAndRetrieveNotes() {
-//        mDao.insertAll(SampleData.getNotes());
-//        int count = mDao.getCount();
-//        Log.i(TAG, "createAndRetrieveNotes: count=" + count);
-//        assertEquals(SampleData.getNotes().size(), count);
+    public void addAndRetrivePhotos() {
+
     }
 
     @Test
     public void compareStrings() {
-//        mDao.insertAll(SampleData.getNotes());
-//        NoteEntity original = SampleData.getNotes().get(0);
-//        NoteEntity fromDb = mDao.getNoteById(1);
-//        assertEquals(original.getText(), fromDb.getText());
-//        assertEquals(1, fromDb.getId());
+
     }
 }
