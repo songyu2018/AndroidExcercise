@@ -12,14 +12,18 @@ import java.util.List;
 
 public class SearchResultViewModel extends AndroidViewModel {
 
-    public LiveData<List<Photo>> mPhotos;
+    private LiveData<List<Photo>> mPhotos;
     private PhotoRepository mRepository;
 
     public SearchResultViewModel(@NonNull Application application) {
         super(application);
 
         mRepository = PhotoRepository.getInstance(application.getApplicationContext());
-        mPhotos = mRepository.mPhotos;
+        mPhotos = mRepository.getPhotos();
+    }
+
+    public LiveData<List<Photo>> getPhotos() {
+        return this.mPhotos;
     }
 
     public void deleteAllPhotos() {

@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
         mViewModel = ViewModelProviders.of(this)
                 .get(SearchResultViewModel.class);
-        mViewModel.mPhotos.observe(this, photosObserver);
+        mViewModel.getPhotos().observe(this, photosObserver);
         this.search("trees");
     }
 

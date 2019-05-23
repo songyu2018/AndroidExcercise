@@ -27,7 +27,7 @@ public class PhotoRepository {
 
     public static final String TAG = "PhotoRepository";
 
-    public LiveData<List<Photo>> mPhotos;
+    private LiveData<List<Photo>> mPhotos;
     private PhotoDatabase mDb;
     private Executor executor = Executors.newSingleThreadExecutor();
     private static Object lock = new Object();
@@ -46,17 +46,12 @@ public class PhotoRepository {
         mPhotos = getAllPhotos();
     }
 
-    public void addSampleData() {
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                //mDb.photoDao().insertAll(SampleData.getNotes());
-            }
-        });
-    }
-
     private LiveData<List<Photo>> getAllPhotos() {
         return mDb.photoDao().getAll();
+    }
+
+    public LiveData<List<Photo>> getPhotos() {
+        return this.mPhotos;
     }
 
     public void deleteAllPhotos() {
@@ -121,13 +116,13 @@ public class PhotoRepository {
                      */
                     String status = response.body().getStat();
                     if (status.equals("ok")) {
-                        final List<Photo> photos = response.body().getPhotos().getPhoto();
-                        executor.execute(new Runnable() {
-                            @Override
-                            public void run() {
-                                mDb.photoDao().insertAll(photos);
-                            }
-                        });
+                            final List<Photo> photos = response.body().getPhotos().getPhoto();
+                            executor.execute(new Runnable() {
+                                @Override
+                                public void run() {
+                                    mDb.photoDao().insertAll(photos);
+                                }
+                            });
 
                     } else {
                         Log.e(TAG, status);
